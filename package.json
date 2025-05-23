@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "lucide-react": "^0.511.0",
     "my-next-app": "file:",
     "next": "15.1.8",
     "react": "^19.0.0",
