@@ -4,6 +4,10 @@ import Image from "next/image";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 
+interface KeyboardEventWithSpace extends KeyboardEvent {
+  key: string;
+}
+
 // Sample images - in a real app, these would come from props or API
 const images = [
   {
@@ -80,11 +84,11 @@ export default function Home() {
   }, [isAutoPlay]);
 
   // Touch/swipe functionality
-  const handleTouchStart = (e) => {
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchEnd(e.targetTouches[0].clientX);
   };
 
@@ -107,7 +111,7 @@ export default function Home() {
 
   // Keyboard navigation
   useEffect(() => {
-    const handleKeyPress = (e) => {
+    const handleKeyPress = (e: KeyboardEventWithSpace) => {
       if (e.key === "ArrowLeft") {
         goToPrevious();
       } else if (e.key === "ArrowRight") {
